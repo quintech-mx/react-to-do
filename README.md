@@ -29,5 +29,6 @@ Por cada tarea completada, el puntaje aumentará 3 puntos.
 # -- BONUS ⭐️ -- 
   1. Agregar una etiqueta donde se muestre el estado de la tarea. Existen 3 tipos. "No se ha empezado" "En Proceso" y "Retraso"
    a) Dicho estado será dado de alta al momento de crear una tarea.
-  2. Funcionalidad de editar una tarea y por ende su estado
+  2. Funcionalidad de editar una tarea y por ende su estado.
+  3. Cualquier funcionalidad extra que quisieras agregar para complementar la aplicación. Ejemplo: buscador de tareas
  
