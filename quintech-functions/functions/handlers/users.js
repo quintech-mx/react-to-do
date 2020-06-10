@@ -97,7 +97,10 @@ exports.login = (req, res) => {
 			console.error(err);
 			return res
 				.status(403)
-				.json({ general: 'Wrong credentials, please try again' });
+				.json({
+					general:
+						'Usuario/contraseña incorrectos, por favor intente de nuevo',
+				});
 		});
 };
 
