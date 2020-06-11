@@ -19,7 +19,7 @@ dayjs.locale('es');
 
 const styles = (theme) => ({
 	...theme.spreadThis,
-	status: {
+	'.statusContainer': {
 		fontSize: 13,
 	},
 	statusComplete: {
@@ -73,35 +73,37 @@ class Task extends Component {
 			<Grid item xs={12} sm={6} md={4}>
 				<Card className={classes.root} spacing={2}>
 					<CardContent>
-						{status === 'Completada' ? (
-							<Typography
-								className={classes.statusComplete}
-								gutterBottom
-							>
-								{status}
-							</Typography>
-						) : status === 'No se ha empezado' ? (
-							<Typography
-								className={classes.statusNotStarted}
-								gutterBottom
-							>
-								{status}
-							</Typography>
-						) : status === 'En Progreso' ? (
-							<Typography
-								className={classes.statusInProgress}
-								gutterBottom
-							>
-								{status}
-							</Typography>
-						) : (
-							<Typography
-								className={classes.statusDelayed}
-								gutterBottom
-							>
-								{status}
-							</Typography>
-						)}
+						<div className="statusContainer">
+							{status === 'Completada' ? (
+								<Typography
+									className={classes.statusComplete}
+									gutterBottom
+								>
+									{status}
+								</Typography>
+							) : status === 'No se ha empezado' ? (
+								<Typography
+									className={classes.statusNotStarted}
+									gutterBottom
+								>
+									{status}
+								</Typography>
+							) : status === 'En Progreso' ? (
+								<Typography
+									className={classes.statusInProgress}
+									gutterBottom
+								>
+									{status}
+								</Typography>
+							) : (
+								<Typography
+									className={classes.statusDelayed}
+									gutterBottom
+								>
+									{status}
+								</Typography>
+							)}
+						</div>
 						<Typography variant="h5" component="h2">
 							{name}
 						</Typography>
