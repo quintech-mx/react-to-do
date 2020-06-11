@@ -23,3 +23,7 @@ yarn-debug.log*
 yarn-error.log*
 
 .vscode
+
+util/AuthRoute.js
+pages/signup.js
+components/Task.js
