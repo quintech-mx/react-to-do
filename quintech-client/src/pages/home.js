@@ -5,6 +5,9 @@ import axios from 'axios';
 // Material UI
 import Grid from '@material-ui/core/Grid';
 
+// Components
+import Task from '../components/Task';
+
 const styles = (theme) => ({
 	...theme.spreadThis,
 });
@@ -17,7 +20,6 @@ class home extends Component {
 		axios
 			.get('/my-tasks')
 			.then((res) => {
-				console.log(res.data);
 				this.setState({
 					tasks: res.data,
 				});
@@ -26,7 +28,9 @@ class home extends Component {
 	}
 	render() {
 		let ownTasksMarkup = this.state.tasks ? (
-			this.state.tasks.map((task) => <p>{task.details}</p>)
+			this.state.tasks.map((task) => (
+				<Task key={task.taskId} task={task} />
+			))
 		) : (
 			<p>Loading...</p>
 		);
@@ -35,7 +39,7 @@ class home extends Component {
 				<Grid item sm={3} xs={12}>
 					<p>Perfil</p>
 				</Grid>
-				<Grid item sm={9} xs={12}>
+				<Grid item sm={9} xs={12} container spacing={2}>
 					{ownTasksMarkup}
 				</Grid>
 			</Grid>
