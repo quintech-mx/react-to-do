@@ -24,6 +24,6 @@ yarn-error.log*
 
 .vscode
 
-util/AuthRoute.js
-pages/signup.js
-components/Task.js
+src/util/AuthRoute.js
+src/pages/signup.js
+src/components/Task.js
