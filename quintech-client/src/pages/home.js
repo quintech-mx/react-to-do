@@ -1,31 +1,46 @@
 import React, { Component } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
+import axios from 'axios';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
 
-// Resources
-import Logo from '../images/logo_circle.png';
+// Components
+import Task from '../components/Task';
 
 const styles = (theme) => ({
 	...theme.spreadThis,
 });
 
 class home extends Component {
+	state = {
+		tasks: null,
+	};
+	componentDidMount() {
+		axios
+			.get('/my-tasks')
+			.then((res) => {
+				this.setState({
+					tasks: res.data,
+				});
+			})
+			.catch((err) => console.error(err));
+	}
 	render() {
-		const { classes } = this.props;
+		let ownTasksMarkup = this.state.tasks ? (
+			this.state.tasks.map((task) => (
+				<Task key={task.taskId} task={task} />
+			))
+		) : (
+			<p>Loading...</p>
+		);
 		return (
-			<Grid container className={classes.formContainer} justify="center">
-				<Grid item sm={4} xs={12} className={classes.form}>
-					<img
-						src={Logo}
-						alt="To-Do logo"
-						className={classes.homeLogo}
-					/>
-					<Typography variant="h1" className={classes.pageTitle}>
-						Quintech To-Do
-					</Typography>
+			<Grid container spacing={2}>
+				<Grid item sm={3} xs={12}>
+					<p>Perfil</p>
+				</Grid>
+				<Grid item sm={9} xs={12} container spacing={2}>
+					{ownTasksMarkup}
 				</Grid>
 			</Grid>
 		);

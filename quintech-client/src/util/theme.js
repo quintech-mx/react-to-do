@@ -14,9 +14,6 @@ export default {
 		},
 	},
 	spreadThis: {
-		homeLogo: {
-			width: '60%',
-		},
 		card: {
 			display: 'flex',
 			marginBottom: 20,
