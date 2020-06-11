@@ -30,3 +30,13 @@ body {
 a {
 	text-decoration: none;
 }
+
+.updateTask,
+.completeTask {
+	transition: all 0.25s ease-in-out !important;
+}
+
+.updateTask:hover,
+.completeTask:hover {
+	transform: rotate(360deg);
+}
