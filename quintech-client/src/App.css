@@ -45,12 +45,50 @@ a:hover {
 	transform: scale(1.2);
 }
 
+.editTask,
 .updateTask,
 .completeTask {
 	transition: all 0.25s ease-in-out !important;
 }
 
+.logoutButton {
+	left: 75%;
+}
+.logoutButton svg {
+	color: red;
+}
+
+.newTaskBtnContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.newTaskBtnContainer button {
+	position: fixed;
+	bottom: 60px;
+	right: 60px;
+	z-index: 1000;
+	background-color: #e91e63 !important;
+	transition: all 0.3s ease-in-out !important;
+}
+
+.newTaskBtnContainer button:hover {
+	transform: scale(1.2);
+}
+
+.newTaskBtnContainer button span {
+	color: #fff;
+}
+
+.editTask:hover,
 .updateTask:hover,
 .completeTask:hover {
 	transform: rotate(360deg);
+}
+
+.completedContainer {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
 }
