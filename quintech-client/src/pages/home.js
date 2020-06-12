@@ -1,51 +1,71 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Components
 import Task from '../components/Task';
 import Profile from '../components/Profile';
+import AddTask from '../components/AddTask';
+
+// Redux stuff
+import { connect } from 'react-redux';
+import { getAllTasksData } from '../redux/actions/dataActions';
 
 const styles = (theme) => ({
 	...theme.spreadThis,
 });
 
 class home extends Component {
-	state = {
-		tasks: null,
-	};
 	componentDidMount() {
-		axios
-			.get('/my-tasks')
-			.then((res) => {
-				this.setState({
-					tasks: res.data,
-				});
-			})
-			.catch((err) => console.error(err));
+		this.props.getAllTasksData();
 	}
 	render() {
-		let ownTasksMarkup = this.state.tasks ? (
-			this.state.tasks.map((task) => (
-				<Task key={task.taskId} task={task} />
-			))
+		const {
+			classes,
+			data: { tasks, loading },
+		} = this.props;
+		let ownTasksMarkup = !loading ? (
+			tasks.map((task) => <Task key={task.taskId} task={task} />)
 		) : (
-			<p>Loading...</p>
+			<div className={classes.loadingHolder}>
+				<CircularProgress size={70} className={classes.progressData} />
+			</div>
 		);
 		return (
-			<Grid container spacing={2}>
-				<Grid item sm={3} xs={12}>
-					<Profile />
+			<Fragment>
+				<Grid container spacing={2}>
+					<Grid item sm={3} xs={12}>
+						<Profile />
+					</Grid>
+					<Grid item sm={9} xs={12} container spacing={2}>
+						{ownTasksMarkup}
+					</Grid>
 				</Grid>
-				<Grid item sm={9} xs={12} container spacing={2}>
-					{ownTasksMarkup}
-				</Grid>
-			</Grid>
+				<AddTask />
+			</Fragment>
 		);
 	}
 }
 
-export default withStyles(styles)(home);
+home.propTypes = {
+	classes: PropTypes.object.isRequired,
+	getAllTasksData: PropTypes.func.isRequired,
+	data: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+	data: state.data,
+});
+
+const mapStateToActions = {
+	getAllTasksData,
+};
+
+export default connect(
+	mapStateToProps,
+	mapStateToActions
+)(withStyles(styles)(home));
