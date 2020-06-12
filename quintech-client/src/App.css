@@ -27,8 +27,22 @@ body {
 	color: #fff;
 }
 
-a {
-	text-decoration: none;
+a,
+a:hover {
+	text-decoration: none !important;
+}
+
+.button {
+	background-color: #0d47a1 !important;
+	color: #fff !important;
+	width: 35px !important;
+	height: 35px !important;
+	transition: all 0.3s ease-in-out !important;
+}
+
+.button:hover {
+	/* background-color: rgba(13, 71, 161, 0.8) !important; */
+	transform: scale(1.2);
 }
 
 .updateTask,

@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 // Components
 import Task from '../components/Task';
+import Profile from '../components/Profile';
 
 const styles = (theme) => ({
 	...theme.spreadThis,
@@ -37,7 +38,7 @@ class home extends Component {
 		return (
 			<Grid container spacing={2}>
 				<Grid item sm={3} xs={12}>
-					<p>Perfil</p>
+					<Profile />
 				</Grid>
 				<Grid item sm={9} xs={12} container spacing={2}>
 					{ownTasksMarkup}

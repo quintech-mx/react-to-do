@@ -79,9 +79,6 @@ export default {
 				'& span, svg': {
 					verticalAlign: 'middle',
 				},
-				'& a': {
-					color: '#00bcd4',
-				},
 			},
 			'& hr': {
 				border: 'none',
