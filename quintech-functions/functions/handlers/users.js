@@ -169,13 +169,6 @@ exports.completeTask = (userHandle) => {
 			let level;
 			points += 3;
 
-			console.log(
-				'Original: ',
-				data.data().points,
-				' ',
-				data.data().level
-			);
-
 			switch (true) {
 				case points < 6:
 					level = 1;
@@ -193,8 +186,6 @@ exports.completeTask = (userHandle) => {
 					level = 5;
 					break;
 			}
-
-			console.log('Nuevo: ', points, ' ', level);
 
 			if (level !== data.data().level) points = 0;
 
