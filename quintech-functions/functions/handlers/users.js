@@ -165,29 +165,41 @@ exports.completeTask = (userHandle) => {
 	db.doc(`/users/${userHandle}`)
 		.get()
 		.then((data) => {
-			const { points } = data.data();
+			let { points } = data.data();
 			let level;
+			points += 3;
+
+			console.log(
+				'Original: ',
+				data.data().points,
+				' ',
+				data.data().level
+			);
 
 			switch (true) {
-				case points <= 6:
+				case points < 6:
 					level = 1;
 					break;
-				case points <= 15:
+				case points < 15:
 					level = 2;
 					break;
-				case points <= 27:
+				case points < 27:
 					level = 3;
 					break;
-				case points <= 42:
+				case points < 42:
 					level = 4;
 					break;
-				case points <= 60:
+				case points < 60:
 					level = 5;
 					break;
 			}
 
+			console.log('Nuevo: ', points, ' ', level);
+
+			if (level !== data.data().level) points = 0;
+
 			return data.ref.update({
-				points: points + 3,
+				points: points,
 				level,
 			});
 		})

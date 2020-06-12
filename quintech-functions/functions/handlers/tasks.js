@@ -3,9 +3,30 @@ const { validateNewTaskData } = require('../util/validators');
 
 const { completeTask } = require('./users');
 
+exports.getOneTask = (req, res) => {
+	db.doc(`/tasks/${req.params.taskId}`)
+		.get()
+		.then((doc) => {
+			if (!doc.exists) {
+				return res.status(404).json({ error: 'Tarea no encontrada' });
+			}
+			if (doc.data().assignee !== req.user.handle) {
+				return res.status(403).json({ error: 'No autorizado' });
+			}
+			taskData = doc.data();
+			taskData.taskId = doc.id;
+			return res.json(taskData);
+		})
+		.catch((err) => {
+			console.error(err);
+			return res.status(500).json({ error: err.code });
+		});
+};
+
 // Fetch assigned tasks
 exports.getAssignedTasks = (req, res) => {
 	db.collection('tasks')
+		.orderBy('completed')
 		.orderBy('createdAt', 'desc')
 		.get()
 		.then((data) => {
@@ -124,8 +145,8 @@ exports.updateTaskStatus = (req, res) => {
 				status: newStatus.status,
 			});
 		})
-		.then((data) => {
-			if (data.exists) return res.status(200).json(newStatus);
+		.then(() => {
+			return res.status(200).json(newStatus);
 		})
 		.catch((err) => {
 			console.error(err);
@@ -144,24 +165,12 @@ exports.editTask = (req, res) => {
 
 	if (!valid) return res.status(400).json(errors);
 
-	let user = req.user.handle;
+	let document = db.doc(`/tasks/${req.params.taskId}`);
 
-	db.doc(`/tasks/${req.params.taskId}`)
-		.get()
-		.then((doc) => {
-			if (!doc.exists) {
-				return res.status(404).json({ error: 'Tarea no encontrada' });
-			}
-
-			if (user === doc.data().assigner) {
-				return doc.ref.update(newTaskData);
-			}
-			return res.status(403).json({ error: 'No autorizado' });
-		})
-		.then((data) => {
-			if (data.exists) {
-				return res.status(200).json(newTaskData);
-			}
+	document
+		.update(newTaskData)
+		.then(() => {
+			res.status(200).json(newTaskData);
 		})
 		.catch((err) => {
 			console.error(err);

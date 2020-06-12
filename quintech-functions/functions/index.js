@@ -5,6 +5,7 @@ const {
 	getAssignedTasks,
 	getOwnTasks,
 	createTask,
+	getOneTask,
 	updateTaskStatus,
 	editTask,
 	deleteTask,
@@ -25,6 +26,7 @@ const FBAuth = require('./util/fbAuth');
 app.get('/my-tasks', FBAuth, getOwnTasks);
 app.get('/tasks', FBAuth, getAssignedTasks);
 app.post('/task', FBAuth, createTask);
+app.get('/task/:taskId', FBAuth, getOneTask);
 app.delete('/task/:taskId', FBAuth, deleteTask);
 app.post('/task/:taskId/edit', FBAuth, editTask);
 app.post('/task/:taskId/update', FBAuth, updateTaskStatus);
