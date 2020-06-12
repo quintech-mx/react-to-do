@@ -54,6 +54,11 @@ export default {
 			display: 'inline-block',
 			color: 'white',
 		},
+		progressData: {
+			marginTop: 70,
+			display: 'block',
+			color: '#0D47A1',
+		},
 		paper: {
 			padding: 20,
 		},
@@ -73,6 +78,7 @@ export default {
 				objectFit: 'cover',
 				maxWidth: '100%',
 				borderRadius: '50%',
+				border: '2px solid #ccc',
 			},
 			'& .profile-details': {
 				textAlign: 'center',
@@ -95,6 +101,48 @@ export default {
 			'& a': {
 				margin: '20px 10px',
 			},
+		},
+		loadingHolder: {
+			width: '100%',
+			display: 'flex',
+			justifyContent: 'center',
+		},
+		status: {
+			fontSize: 13,
+		},
+		statusComplete: {
+			color: '#4CAF50 !important',
+		},
+		statusNotStarted: {
+			color: 'rgba(0, 0, 0, 0.54)',
+		},
+		statusInProgress: {
+			color: '#03A9F4',
+		},
+		statusDelayed: {
+			color: '#FFAB00',
+		},
+		assigned: {
+			fontSize: 14,
+		},
+		taskButtons: {
+			justifyContent: 'flex-end',
+			'& *': {
+				color: '#fff',
+			},
+			'& .editTask': {
+				backgroundColor: '#29B6F6',
+			},
+			'& .updateTask': {
+				backgroundColor: '#FB8C00',
+			},
+			'& .completeTask': {
+				backgroundColor: '#4CAF50',
+			},
+		},
+		disabledButton: {
+			backgroundColor: 'rgba(0, 0, 0, 0.3) !important',
+			color: '#fff !important',
 		},
 	},
 };
