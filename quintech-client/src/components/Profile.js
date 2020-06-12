@@ -4,6 +4,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
 
+// Util
+import MyButton from '../util/MyButton';
+
 // Material UI
 import Button from '@material-ui/core/Button';
 import Avatar from '@material-ui/core/Avatar';
@@ -12,8 +15,8 @@ import Paper from '@material-ui/core/Paper';
 import MuiLink from '@material-ui/core/Link';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 // Material Icons
 import CalendarToday from '@material-ui/icons/CalendarToday';
@@ -58,7 +61,6 @@ class Profile extends Component {
 	handleLogout = () => {
 		this.props.logoutUser();
 	};
-
 	render() {
 		const {
 			classes,
@@ -122,14 +124,13 @@ class Profile extends Component {
 								onChange={this.handleImageChange}
 								hidden="hidden"
 							/>
-							<Tooltip title="Editar imagen de perfil">
-								<IconButton
-									onClick={this.handleEditPicture}
-									className="button"
-								>
-									<EditIcon />
-								</IconButton>
-							</Tooltip>
+							<MyButton
+								tip="Editar imagen de perfil"
+								onClick={this.handleEditPicture}
+								btnClassName="button"
+							>
+								<EditIcon />
+							</MyButton>
 						</div>
 						<hr />
 						<div className="profile-details">
@@ -187,16 +188,13 @@ class Profile extends Component {
 								{dayjs(createdAt).format('MMM[ de ]YYYY')}
 							</span>
 						</div>
-						<Tooltip title="Cerrar sesión">
-							<IconButton onClick={this.handleLogout}>
-								<PowerSettingsNew color="primary" />
-							</IconButton>
-						</Tooltip>
-						<Tooltip title="Editar nombre">
-							<IconButton onClick={this.handleEditDetails}>
-								<EditIcon color="primary" />
-							</IconButton>
-						</Tooltip>
+						<MyButton
+							tip="Cerrar sesión"
+							onClick={this.handleLogout}
+							btnClassName="logoutButton"
+						>
+							<PowerSettingsNew color="primary" />
+						</MyButton>
 					</div>
 				</Paper>
 			) : (
@@ -226,7 +224,13 @@ class Profile extends Component {
 				</Paper>
 			)
 		) : (
-			<p>Loading...</p>
+			<div className={classes.loadingHolder}>
+				<CircularProgress
+					size={60}
+					className={classes.progressData}
+					color="primary"
+				/>
+			</div>
 		);
 		return profileMarkup;
 	}
