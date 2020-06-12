@@ -25,6 +25,8 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 
 const theme = createMuiTheme(themeFile);
 
+axios.defaults.baseURL = 'https://us-east1-quintech-pr.cloudfunctions.net/api';
+
 const token = localStorage.AuthToken;
 if (token) {
 	const decodedToken = jwtDecode(token);
