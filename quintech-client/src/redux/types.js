@@ -11,3 +11,6 @@ export const LOADING_UI = 'LOADING_UI';
 export const LOADING_DATA = 'LOADING_DATA';
 
 // Data reducer types
+export const SET_TASKS = 'SET_TASKS';
+export const UPDATE_STATUS = 'UPDATE_STATUS';
+export const ADD_TASK = 'ADD_TASK';
