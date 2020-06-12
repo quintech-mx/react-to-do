@@ -22,6 +22,9 @@ const {
 
 const FBAuth = require('./util/fbAuth');
 
+const cors = require('cors');
+app.use(cors());
+
 // Task routes
 app.get('/my-tasks', FBAuth, getOwnTasks);
 app.get('/tasks', FBAuth, getAssignedTasks);
