@@ -15,6 +15,7 @@ const {
 	login,
 	getAutheticatedUser,
 	getUserDetails,
+	editUserDetails,
 	uploadImage,
 } = require('./handlers/users');
 
@@ -32,6 +33,7 @@ app.post('/task/:taskId/update', FBAuth, updateTaskStatus);
 app.post('/signup', signup);
 app.post('/login', login);
 app.get('/user', FBAuth, getAutheticatedUser);
+app.post('/user', FBAuth, editUserDetails);
 app.get('/user/:handle', getUserDetails);
 app.post('/user/image', FBAuth, uploadImage);
 // app.post('/notifications', FBAuth, markNotificationsRead);

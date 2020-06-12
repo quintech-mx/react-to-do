@@ -95,12 +95,10 @@ exports.login = (req, res) => {
 		})
 		.catch((err) => {
 			console.error(err);
-			return res
-				.status(403)
-				.json({
-					general:
-						'Usuario/contraseña incorrectos, por favor intente de nuevo',
-				});
+			return res.status(403).json({
+				general:
+					'Usuario/contraseña incorrectos, por favor intente de nuevo',
+			});
 		});
 };
 
@@ -255,6 +253,21 @@ exports.uploadImage = (req, res) => {
 	});
 
 	busboy.end(req.rawBody);
+};
+
+exports.editUserDetails = (req, res) => {
+	let document = db.collection('users').doc(`${req.user.handle}`);
+	document
+		.update(req.body)
+		.then(() => {
+			return res.json({ message: 'Usuario actualizado exitosamente' });
+		})
+		.catch((error) => {
+			console.error(error);
+			return res.status(500).json({
+				error: 'Ocurrió un problema, por favor vuelte a intentarlo',
+			});
+		});
 };
 
 // Mark notifications as read (WIP)
