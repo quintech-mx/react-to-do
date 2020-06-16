@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
+* {
+	font-family: 'Source Sans Pro', sans-serif !important;
+}
+
+html,
+body {
+	background-color: #e7e7e7;
+}
+
+.container {
+	margin: 80px auto 0;
+	max-width: 1200px;
+}
+
+.nav-container {
+	display: flex;
+	justify-content: space-around;
+}
+
+.navLogo {
+	width: 40px;
+}
+
+.nav-container svg {
+	color: #fff;
+}
+
+a,
+a:hover {
+	text-decoration: none !important;
+}
+
+.button {
+	background-color: #0d47a1 !important;
+	color: #fff !important;
+	width: 35px !important;
+	height: 35px !important;
+	transition: all 0.3s ease-in-out !important;
+}
+
+.button:hover {
+	/* background-color: rgba(13, 71, 161, 0.8) !important; */
+	transform: scale(1.2);
+}
+
+.editTask,
+.updateTask,
+.completeTask {
+	transition: all 0.25s ease-in-out !important;
+}
+
+.logoutButton {
+	left: 75%;
+}
+.logoutButton svg {
+	color: red;
+}
+
+.newTaskBtnContainer {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.newTaskBtnContainer button {
+	position: fixed;
+	bottom: 60px;
+	right: 60px;
+	z-index: 1000;
+	background-color: #e91e63 !important;
+	transition: all 0.3s ease-in-out !important;
+}
+
+.newTaskBtnContainer button:hover {
+	transform: scale(1.2);
+}
+
+.newTaskBtnContainer button span {
+	color: #fff;
+}
+
+.editTask:hover,
+.updateTask:hover,
+.completeTask:hover {
+	transform: rotate(360deg);
+}
+
+.completedContainer {
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
+}
